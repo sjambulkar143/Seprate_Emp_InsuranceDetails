@@ -1,0 +1,5 @@
+{"records": [{
+    "jsonSchemaLocation": "/emp_insurance_detailsREST/Service Descriptors/emp_insurance_detailsrest.emp_insurance_detailsXML-emp_insurancedetails.json",
+    "conversionType": "linked",
+    "xsdSchemaTargetNamespace": "http://www.example.org/emp_insurance_details"
+}]}

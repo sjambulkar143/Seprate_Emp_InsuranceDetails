@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_-Cjl4E4wEe2anor-PVsr0w" targetNamespace="http://tns.tibco.com/bw/composite/emp_insurance_detailsREST" name="emp_insurance_detailsREST" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:service xmi:id="_OB4T4E4yEe2anor-PVsr0w" name="emp_insurancedetails" promote="Componentemp_insurance_detailsXML/emp_insurancedetails">
+    <sca:interface.wsdl xmi:id="_OB4T5E4yEe2anor-PVsr0w" interface="http://xmlns.example.com/20221017210255PLT#wsdl.interface(emp_insurancedetails)" scaext:wsdlLocation="../Processes/emp_insurance_detailsrest/emp_insurance_detailsXML.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_OCCr8E4yEe2anor-PVsr0w" name="RestService" path="/emp_insurancedetails" docBasePath="http://localhost:7777/emp_insurance_detailsREST" docResourcePath="emp_insurancedetails" basePath="/" connector="commonlog.HTTPConnectorResource" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/emp_insurance_detailsrest.emp_insurance_detailsXML-emp_insurancedetails.json">
+      <operation xmi:id="_OCOSIE4yEe2anor-PVsr0w" operationName="post" nickname="post-emp_insurancedetails" httpMethod="POST" notes="postEmp_insurancedetails" responseStyle="element" requestStyle="element" outputPartName="item">
+        <clientFormat>xml</clientFormat>
+        <clientRequestFormat>xml</clientRequestFormat>
+      </operation>
+      <advancedConfig xmi:id="_OCCr8U4yEe2anor-PVsr0w" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_OCOSIU4yEe2anor-PVsr0w" bindingName="RestService"/>
+  </sca:service>
+  <sca:property xmi:id="_-z_C0E4wEe2anor-PVsr0w" name="BW.DEPLOYMENTUNIT.TYPE" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_-0DUQE4wEe2anor-PVsr0w" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_-0FJcE4wEe2anor-PVsr0w" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_-0G-oE4wEe2anor-PVsr0w" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_-0KB8E4wEe2anor-PVsr0w" name="BW.DOMAIN.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_-0NFQE4wEe2anor-PVsr0w" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_-0PhgE4wEe2anor-PVsr0w" name="BW.APPSPACE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_-0Sk0E4wEe2anor-PVsr0w" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_-0VoIE4wEe2anor-PVsr0w" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:component xmi:id="_-JVjUE4wEe2anor-PVsr0w" name="Componentemp_insurance_detailsXML" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_-JVjUU4wEe2anor-PVsr0w" processName="emp_insurance_detailsrest.emp_insurance_detailsXML"/>
+    <sca:service xmi:id="_OB3s0E4yEe2anor-PVsr0w" name="emp_insurancedetails">
+      <sca:interface.wsdl xmi:id="_OB3s0U4yEe2anor-PVsr0w" interface="http://xmlns.example.com/20221017210255PLT#wsdl.interface(emp_insurancedetails)"/>
+    </sca:service>
+  </sca:component>
+  <sca:component xmi:id="__SbIUE6eEe2anor-PVsr0w" name="ComponentTestXML" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="__SbIUU6eEe2anor-PVsr0w" processName="emp_insurance_detailsrest.TestXML" autoStart="false"/>
+  </sca:component>
+</sca:composite>

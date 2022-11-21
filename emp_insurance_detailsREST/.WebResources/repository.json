@@ -1,0 +1,7 @@
+{
+    "records": [],
+    "resources": [{
+        "location": "Service Descriptors/emp_insurance_detailsrest.emp_insurance_detailsXML-emp_insurancedetails.json",
+        "type": "generated"
+    }]
+}

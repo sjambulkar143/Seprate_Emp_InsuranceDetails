@@ -1,0 +1,75 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "emp_insurancedetails",
+    "description" : "emp_insurancedetails service"
+  },
+  "host" : "localhost:8080",
+  "basePath" : "/",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/emp_insurancedetails" : {
+      "post" : {
+        "summary" : "postEmp_insurancedetails",
+        "description" : "postEmp_insurancedetails",
+        "operationId" : "post-emp_insurancedetails",
+        "consumes" : [ "application/xml" ],
+        "produces" : [ "application/xml" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "description" : "",
+          "schema" : {
+            "$ref" : "#/definitions/empinsurancedetailsReq"
+          },
+          "required" : true
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "a RestResponse to be returned",
+            "schema" : {
+              "$ref" : "#/definitions/RestResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "empinsurancedetailsReq" : {
+      "type" : "object",
+      "required" : [ "EMPLOGINID" ],
+      "properties" : {
+        "EMPLOGINID" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "EMPNAME" : {
+          "type" : "string"
+        },
+        "POLICYNAME" : {
+          "type" : "string"
+        },
+        "POLICYNUMBER" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "POLICYTYPE" : {
+          "type" : "string"
+        },
+        "CorrelationID" : {
+          "type" : "string"
+        }
+      }
+    },
+    "RestResponse" : {
+      "type" : "object",
+      "properties" : {
+        "ResMessages" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
