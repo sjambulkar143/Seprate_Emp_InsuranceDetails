@@ -8,6 +8,7 @@
     xmlns:ns="http://www.tibco.com/pe/EngineTypes"
     xmlns:ns0="http://www.tibco.com/namespaces/tnt/plugins/jdbc+513d2f30-5d3b-472f-a1bf-6b8d3c04ac33+input"
     xmlns:ns1="http://www.tibco.com/namespaces/tnt/plugins/jdbc"
+    xmlns:ns10="http://www.eniquesolution.com/E-Commerce/CommonFramework"
     xmlns:ns2="http://tns.tibco.com/bw/palette/internal/activityerror+bw.jdbc.update"
     xmlns:ns3="http://www.tibco.com/namespaces/tnt/plugins/jdbc+d5a4d3d4-64d0-48a7-a3a3-6f52aba1e828+input"
     xmlns:ns4="http://www.tibco.com/namespaces/tnt/plugins/jdbc+d5a4d3d4-64d0-48a7-a3a3-6f52aba1e828+output"
@@ -724,6 +725,7 @@
                                     <children type="3032">
                                     <children type="4005">
                                     <children type="3007">
+                                    <eAnnotations source="Pixel"/>
                                     <children type="4002">
                                     <children type="4017">
                                     <styles
@@ -762,8 +764,8 @@
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <element href="//0/@process/@activity/@faultHandlers/@catchAll/@activity/@activity/@activities.0"/>
                                     <layoutConstraint
-                                    x="142"
-                                    xsi:type="notation:Bounds" y="33"/>
+                                    x="131"
+                                    xsi:type="notation:Bounds" y="48"/>
                                     </children>
                                     <styles xsi:type="notation:DrawerStyle"/>
                                     <styles xsi:type="notation:SortingStyle"/>
@@ -777,7 +779,8 @@
                                     gradientStartColor="16777215" xsi:type="bwnotation:BackgroundStyle"/>
                                     <styles xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@faultHandlers/@catchAll/@activity/@activity"/>
-                                    <layoutConstraint xsi:type="notation:Bounds"/>
+                                    <layoutConstraint
+                                    height="168" width="540" xsi:type="notation:Bounds"/>
                                     </children>
                                     <styles xsi:type="notation:SortingStyle"/>
                                     <styles xsi:type="notation:FilteringStyle"/>
@@ -785,11 +788,10 @@
                                     <styles fontName="Segoe UI"
                                     lineColor="0" xsi:type="notation:ShapeStyle"/>
                                     <styles xsi:type="bwnotation:BackgroundStyle"/>
-                                    <styles collapsed="true"
-                                    restoreHeight="178"
+                                    <styles restoreHeight="178"
                                     restoreWidth="591" xsi:type="bwnotation:ResizingStyle"/>
                                     <element href="//0/@process/@activity/@faultHandlers/@catchAll"/>
-                                    <layoutConstraint height="22"
+                                    <layoutConstraint height="178"
                                     width="591" xsi:type="notation:Bounds"/>
                                 </children>
                                 <styles xsi:type="notation:SortingStyle"/>
@@ -799,7 +801,7 @@
                             <styles xsi:type="bwnotation:BackgroundStyle"/>
                             <styles xsi:type="bwnotation:ResizingStyle"/>
                             <element href="//0/@process/@activity/@faultHandlers"/>
-                            <layoutConstraint height="44" width="601"
+                            <layoutConstraint height="200" width="601"
                                 x="22" xsi:type="notation:Bounds" y="407"/>
                         </children>
                         <styles xsi:type="notation:SortingStyle"/>
@@ -810,7 +812,7 @@
                     <styles xsi:type="bwnotation:BackgroundStyle"/>
                     <styles xsi:type="bwnotation:ResizingStyle"/>
                     <element href="//0/@process/@activity"/>
-                    <layoutConstraint height="452" width="641" x="1"
+                    <layoutConstraint height="608" width="641" x="1"
                         xsi:type="notation:Bounds" y="1"/>
                 </children>
                 <styles xsi:type="notation:SortingStyle"/>
@@ -819,7 +821,7 @@
             </children>
             <styles fontName="Segoe UI" lineColor="0" xsi:type="notation:ShapeStyle"/>
             <element href="//0/@process"/>
-            <layoutConstraint height="504" width="983" xsi:type="notation:Bounds"/>
+            <layoutConstraint height="660" width="983" xsi:type="notation:Bounds"/>
         </children>
         <styles xsi:type="notation:DiagramStyle"/>
         <element href="//0"/>
@@ -883,9 +885,14 @@
             namespace="http://schemas.tibco.com/bw/plugins/basic/6.0/Exceptions" prefix="tns3"/>
         <tibex:namespaceItem
             namespace="http://www.EniqueSolutions/EmployeeDetailPOC/MainSystem" prefix="tns4"/>
+        <tibex:namespaceItem
+            namespace="http://www.eniquesolution.com/E-Commerce/CommonFramework" prefix="tns5"/>
+        <tibex:namespaceItem
+            namespace="http://www.tibco.com/bw/xslt/custom-functions" prefix="tib"/>
     </tibex:NamespaceRegistry>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.example.org/emp_insurance_details"/>
     <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.EniqueSolutions/EmployeeDetailPOC/MainSystem"/>
+    <bpws:import importType="http://www.w3.org/2001/XMLSchema" namespace="http://www.eniquesolution.com/E-Commerce/CommonFramework"/>
     <bpws:variables>
         <bpws:variable element="ns:ProcessContext"
             name="_processContext" sca-bpel:internal="true"/>
@@ -918,6 +925,16 @@
             sca-bpel:internal="true" tibex:parameter="in"/>
         <bpws:variable element="ns9:RestResponse" name="End-input"
             sca-bpel:internal="true" tibex:parameter="out"/>
+        <bpws:variable name="httpConnectorResource"
+            sca-bpel:hotUpdate="false" sca-bpel:privateProperty="true"
+            sca-bpel:property="yes"
+            sca-bpel:sharedResourceType="{http://xsd.tns.tibco.com/bw/models/sharedresource/httpconnector}HttpConnectorConfiguration" type="xsd:string">
+            <bpws:from>
+                <bpws:literal>commonlog.HTTPConnectorResource</bpws:literal>
+            </bpws:from>
+        </bpws:variable>
+        <bpws:variable element="ns10:LogExceptionHandler"
+            name="ErrorException-input" sca-bpel:internal="true"/>
     </bpws:variables>
     <bpws:extensions>
         <bpws:extension mustUnderstand="no" namespace="http://www.eclipse.org/gmf/runtime/1.0.2/notation"/>
@@ -934,7 +951,21 @@
                 <bpws:scope name="scope1">
                     <bpws:flow name="flow1">
                         <bpws:links/>
-                        <bpws:rethrow name="Rethrow" tibex:xpdlId="4b3fa525-19b2-4064-a1a1-79a989641700"/>
+                        <bpws:extensionActivity>
+                            <tibex:extActivity
+                                inputVariable="ErrorException-input"
+                                name="ErrorException"
+                                tibex:xpdlId="16ea80cc-71e7-474a-941a-5df817d3ce84"
+                                type="bw.generalactivities.callprocess" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions">
+                                <bpws:sources/>
+                                <tibex:inputBindings>
+                                    <tibex:inputBinding coercion=""
+                                    expression="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xa;&lt;xsl:stylesheet xmlns:xsl=&quot;http://www.w3.org/1999/XSL/Transform&quot; xmlns:tns5=&quot;http://www.eniquesolution.com/E-Commerce/CommonFramework&quot; xmlns:tns4=&quot;http://www.EniqueSolutions/EmployeeDetailPOC/MainSystem&quot; xmlns:tib=&quot;http://www.tibco.com/bw/xslt/custom-functions&quot; version=&quot;2.0&quot;>&lt;xsl:param name=&quot;_processContext&quot;/>&lt;xsl:param name=&quot;FaultDetails&quot;/>&lt;xsl:param name=&quot;Start&quot;/>&lt;xsl:template name=&quot;ErrorException-input&quot; match=&quot;/&quot;>&lt;tns5:LogExceptionHandler>&lt;xsl:if test=&quot;$Start/tns4:CorrelationID&quot;>&lt;tns5:CorrelationID>&lt;xsl:value-of select=&quot;$Start/tns4:CorrelationID&quot;/>&lt;/tns5:CorrelationID>&lt;/xsl:if>&lt;tns5:ApplictionName>&lt;xsl:value-of select=&quot;$_processContext/ApplicationName&quot;/>&lt;/tns5:ApplictionName>&lt;tns5:ProcessName>&lt;xsl:value-of select=&quot;&amp;quot;Employee Insurance Details REST SubProcess&amp;quot;&quot;/>&lt;/tns5:ProcessName>&lt;tns5:LogType>&lt;xsl:value-of select=&quot;&amp;quot;ExceptionLog&amp;quot;&quot;/>&lt;/tns5:LogType>&lt;tns5:MessageType>&lt;xsl:value-of select=&quot;&amp;quot;Error Generete&amp;quot;&quot;/>&lt;/tns5:MessageType>&lt;tns5:LogMessage>&lt;xsl:value-of select=&quot;&amp;quot;Process Execution Fail&amp;quot;&quot;/>&lt;/tns5:LogMessage>&lt;tns5:Timestamp>&lt;xsl:value-of select=&quot;tib:timestamp()&quot;/>&lt;/tns5:Timestamp>&lt;tns5:Payload>&lt;xsl:value-of select=&quot;$FaultDetails/ProcessStack&quot;/>&lt;/tns5:Payload>&lt;tns5:Exception>&lt;tns5:MessageCode>&lt;xsl:value-of select=&quot;$FaultDetails/MsgCode&quot;/>&lt;/tns5:MessageCode>&lt;tns5:ExceptionMessage>&lt;xsl:value-of select=&quot;$FaultDetails/Msg&quot;/>&lt;/tns5:ExceptionMessage>&lt;/tns5:Exception>&lt;/tns5:LogExceptionHandler>&lt;/xsl:template>&lt;/xsl:stylesheet>" expressionLanguage="urn:oasis:names:tc:wsbpel:2.0:sublang:xslt1.0"/>
+                                </tibex:inputBindings>
+                                <tibex:CallProcess moduleRef="CommonLog"
+                                    subProcessName="Logger.ErrorException" xmlns:tibex="http://www.tibco.com/bpel/2007/extensions"/>
+                            </tibex:extActivity>
+                        </bpws:extensionActivity>
                     </bpws:flow>
                 </bpws:scope>
             </bpws:catchAll>
